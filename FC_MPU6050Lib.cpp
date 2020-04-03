@@ -156,9 +156,9 @@ void FC_MPU6050Lib::calibrateGyro(int samples)
 		delay(4); // simulate 250Hz loop
 	}
 	
-	gyroCalVal.xPitch += float(sumX) / samples;
-	gyroCalVal.yRoll += float(sumY) / samples;
-	gyroCalVal.zYaw += float(sumZ) / samples;
+	gyroCalVal.xPitch += sumX / samples;
+	gyroCalVal.yRoll += sumY / samples;
+	gyroCalVal.zYaw += sumZ / samples;
 }
 
 
@@ -179,9 +179,9 @@ void FC_MPU6050Lib::calibrateAccelerometer(int samples)
 		delay(4);
 	}
 	
-	accCalVal.x += float(sumX) / samples;
-	accCalVal.y += float(sumY) / samples;
-	accCalVal.z += float(sumZ) / samples;
+	accCalVal.x += sumX / samples;
+	accCalVal.y += sumY / samples;
+	accCalVal.z += sumZ / samples;
 	
 	
 	// Set initial gyro values after calibration
@@ -271,9 +271,11 @@ FC_MPU6050Lib::vector3Float& FC_MPU6050Lib::getAccAngles()
 {
 	static int32_t accTotalVector;
 	
-	accTotalVector = sqrt((rawAcceleration.x * rawAcceleration.x) +
-							(rawAcceleration.y * rawAcceleration.y) +
-							(rawAcceleration.z * rawAcceleration.z));
+	accTotalVector = sqrt(((int32_t)rawAcceleration.x * rawAcceleration.x) +
+							((int32_t)rawAcceleration.y * rawAcceleration.y) +
+							((int32_t)rawAcceleration.z * rawAcceleration.z));
+	//Serial.println(accTotalVector);
+	//Serial.println((int32_t)rawAcceleration.x * rawAcceleration.x);
 	
 	if (abs(rawAcceleration.x) < accTotalVector)
 	{
