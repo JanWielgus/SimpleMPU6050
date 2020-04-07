@@ -274,8 +274,6 @@ FC_MPU6050Lib::vector3Float& FC_MPU6050Lib::getAccAngles()
 	accTotalVector = sqrt(((int32_t)rawAcceleration.x * rawAcceleration.x) +
 							((int32_t)rawAcceleration.y * rawAcceleration.y) +
 							((int32_t)rawAcceleration.z * rawAcceleration.z));
-	//Serial.println(accTotalVector);
-	//Serial.println((int32_t)rawAcceleration.x * rawAcceleration.x);
 	
 	if (abs(rawAcceleration.x) < accTotalVector)
 	{
