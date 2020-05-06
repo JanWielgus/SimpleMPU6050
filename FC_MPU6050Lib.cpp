@@ -297,10 +297,9 @@ FC_MPU6050Lib::vector3Float& FC_MPU6050Lib::getFusedXYAngles()
 	fusedAngle.x += (float)rawRotation.x * Multiplier1;
 	fusedAngle.y += (float)rawRotation.y * Multiplier1;
 
-	static float temp;
-	temp = fusedAngle.x;
-	fusedAngle.x -= fusedAngle.y * sin((float)rawRotation.z * Multiplier2);
-	fusedAngle.y += temp * sin((float)rawRotation.z * Multiplier2);
+	float sinPreCalc = sin((float)rawRotation.z * Multiplier2);
+	fusedAngle.x -= fusedAngle.y * sinPreCalc;
+	fusedAngle.y += fusedAngle.x * sinPreCalc;
 	
 	
 	// Z axis is calculated in getZAngle() method
@@ -324,11 +323,13 @@ float FC_MPU6050Lib::getZAngle(float heading)
 	// Z axis
 	fusedAngle.z += (float)rawRotation.z * Multiplier1;
 	
+	/*
 	// 0-359.99 correction
 	if(fusedAngle.z < 0.0)
 		fusedAngle.z += 360.0;
 	else if (fusedAngle.z >= 360.0)
 		fusedAngle.z -= 360.0;
+	*/
 	
 	
 	// USE COMPASS DATA IF PROVIDED (if not, compass is == -1)  !!!!   <<<-----
