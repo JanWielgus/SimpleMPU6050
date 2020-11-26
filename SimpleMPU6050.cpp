@@ -69,7 +69,7 @@ void SimpleMPU6050::readRawData()
 	Wire.write(0x3B);
 	Wire.endTransmission();
 
-	Wire.requestFrom(MPU6050_Address, 14);
+	Wire.requestFrom(MPU6050_Address, (uint8_t)14);
 	rawAcceleration.x = Wire.read() << 8 | Wire.read();
 	rawAcceleration.y = Wire.read() << 8 | Wire.read();
 	rawAcceleration.z = Wire.read() << 8 | Wire.read();
@@ -93,19 +93,19 @@ void SimpleMPU6050::readRawData()
 }
 
 
-vector3Int16& SimpleMPU6050::getRawAcceleration()
+SimpleMPU6050::vector3Int16& SimpleMPU6050::getRawAcceleration()
 {
 	return rawAcceleration;
 }
 
 
-vector3Int16& SimpleMPU6050::getRawRotation()
+SimpleMPU6050::vector3Int16& SimpleMPU6050::getRawRotation()
 {
 	return rawRotation;
 }
 
 
-vector3Float& SimpleMPU6050::getNormalizedAcceleration()
+SimpleMPU6050::vector3Float& SimpleMPU6050::getNormalizedAcceleration()
 {
 	normAcceleration.x = (float)rawAcceleration.x * accNormalizeMultiplier;
 	normAcceleration.y = (float)rawAcceleration.y * accNormalizeMultiplier;
@@ -114,7 +114,7 @@ vector3Float& SimpleMPU6050::getNormalizedAcceleration()
 }
 
 
-vector3Float& SimpleMPU6050::getNormalizedRotation()
+SimpleMPU6050::vector3Float& SimpleMPU6050::getNormalizedRotation()
 {
 	normRotation.x = (float)rawRotation.x * gyroNormalizeMultiplier;
 	normRotation.y = (float)rawRotation.y * gyroNormalizeMultiplier;
@@ -175,13 +175,13 @@ void SimpleMPU6050::calibrateGyroscope(uint16_t samplesToAverage)
 }
 
 
-const vector3Int16& SimpleMPU6050::getAccOffset()
+SimpleMPU6050::vector3Int16 SimpleMPU6050::getAccOffset()
 {
 	return accOffset;
 }
 
 
-const vector3Int16& SimpleMPU6050::getGyroOffset()
+SimpleMPU6050::vector3Int16 SimpleMPU6050::getGyroOffset()
 {
 	return gyroOffset;
 }
@@ -229,7 +229,7 @@ uint8_t readRegister8(uint8_t address, uint8_t reg)
 	Wire.endTransmission();
 
 	Wire.beginTransmission(address);
-	Wire.requestFrom(address, 1);
+	Wire.requestFrom(address, (uint8_t)1);
 	while (!Wire.available())
 	{
 	};

@@ -123,13 +123,13 @@ public:
 	 * @brief Getter of the accelerometer offset
 	 * (calibration values).
 	 */
-	const vector3Int16& getAccOffset();
+	vector3Int16 getAccOffset();
 
 	/**
 	 * @brief Getter of the gyro offset
 	 * (calibration values).
 	 */
-	const vector3Int16& getGyroOffset();
+	vector3Int16 getGyroOffset();
 
 	/**
 	 * @brief Accelerometer offset setter.
