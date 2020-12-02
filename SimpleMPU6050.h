@@ -49,7 +49,7 @@ private:
 	// Normalize multipliters
 	const float accNormalizeMultiplier = 0.0002441406f; // = 1 / 4096
 	const float gyroNormalizeMultiplier = 0.01526717f; // = 1 / 65.5
-	const float acc1G_value = 4096; // (from datasheet)
+	const uint16_t acc1G_value = 4096; // (from datasheet)
 
 	static const uint8_t MPU6050_Address = 0x68;
 
@@ -152,6 +152,14 @@ public:
 	 * sensor board, because it is connected via MPU6050.
 	 */
 	void enableCompassBypass();
+
+	/**
+	 * @brief Return the value whick accelerometer axis has if have 1G.
+	 */
+	uint16_t getRawAccValueFor1G()
+	{
+		return acc1G_value;
+	}
 };
 
 
