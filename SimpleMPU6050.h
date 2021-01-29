@@ -12,7 +12,7 @@
 #ifndef SIMPLEMPU6050_H
 #define SIMPLEMPU6050_H
 
-#include "arduino.h"
+#include "Arduino.h"
 #include <Wire.h>
 
 
