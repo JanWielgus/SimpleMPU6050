@@ -78,26 +78,26 @@ public:
 	 * @brief Getter of raw acceleration.
 	 * @return Raw acceleration int16 vector.
 	 */
-	vector3Int16& getRawAcceleration();
+	vector3Int16 getRawAcceleration();
 	
 	/**
 	 * @brief Getter of raw angular velocity.
 	 * @return Raw angular velocity int16 vector.
 	 */
-	vector3Int16& getRawRotation();
+	vector3Int16 getRawRotation();
 
 	/**
 	 * @brief Getter of normalized acceleration [in G].
 	 * @return Normalized acceleration float vector.
 	 */
-	vector3Float& getNormalizedAcceleration();
+	vector3Float getNormalizedAcceleration();
 
 	/**
 	 * @brief Getter of normalized angular velocity
 	 * [in revolutions per second].
 	 * @return Normalized angular velocity float vector.
 	 */
-	vector3Float& getNormalizedRotation();
+	vector3Float getNormalizedRotation();
 
 	/**
 	 * @brief Get the temperature in degrees Celsius.

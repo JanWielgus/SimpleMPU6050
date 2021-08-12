@@ -93,19 +93,19 @@ void SimpleMPU6050::readRawData()
 }
 
 
-SimpleMPU6050::vector3Int16& SimpleMPU6050::getRawAcceleration()
+SimpleMPU6050::vector3Int16 SimpleMPU6050::getRawAcceleration()
 {
 	return rawAcceleration;
 }
 
 
-SimpleMPU6050::vector3Int16& SimpleMPU6050::getRawRotation()
+SimpleMPU6050::vector3Int16 SimpleMPU6050::getRawRotation()
 {
 	return rawRotation;
 }
 
 
-SimpleMPU6050::vector3Float& SimpleMPU6050::getNormalizedAcceleration()
+SimpleMPU6050::vector3Float SimpleMPU6050::getNormalizedAcceleration()
 {
 	normAcceleration.x = (float)rawAcceleration.x * accNormalizeMultiplier;
 	normAcceleration.y = (float)rawAcceleration.y * accNormalizeMultiplier;
@@ -114,7 +114,7 @@ SimpleMPU6050::vector3Float& SimpleMPU6050::getNormalizedAcceleration()
 }
 
 
-SimpleMPU6050::vector3Float& SimpleMPU6050::getNormalizedRotation()
+SimpleMPU6050::vector3Float SimpleMPU6050::getNormalizedRotation()
 {
 	normRotation.x = (float)rawRotation.x * gyroNormalizeMultiplier;
 	normRotation.y = (float)rawRotation.y * gyroNormalizeMultiplier;
