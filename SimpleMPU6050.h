@@ -43,7 +43,7 @@ private:
 	vector3Int16 rawRotation;
 	vector3Float normAcceleration; // updated in getter
 	vector3Float normRotation; // updated in getter
-	int16_t temperature;
+	float temperature;
 
 	// Calibration values
 	vector3Int16 accOffset;
@@ -102,7 +102,7 @@ public:
 	/**
 	 * @brief Get the temperature in degrees Celsius.
 	 */
-	int16_t getTemperature();
+	float getTemperature();
 
 	/**
 	 * @brief Block the program and perform accelerometer calibration.

@@ -73,7 +73,7 @@ void SimpleMPU6050::readRawData()
 	rawAcceleration.x = Wire.read() << 8 | Wire.read();
 	rawAcceleration.y = Wire.read() << 8 | Wire.read();
 	rawAcceleration.z = Wire.read() << 8 | Wire.read();
-	temperature = Wire.read() << 8 | Wire.read();
+	int16_t rawTemperature = Wire.read() << 8 | Wire.read();
 	rawRotation.x = Wire.read() << 8 | Wire.read();
 	rawRotation.y = Wire.read() << 8 | Wire.read();
 	rawRotation.z = Wire.read() << 8 | Wire.read();
@@ -89,7 +89,7 @@ void SimpleMPU6050::readRawData()
 
 
 	// Temperature                    / 340
-	temperature = ((float)temperature * 0.002941f + 36.53f) + 0.5f; // 0.5 to average for int
+	temperature = ((float)rawTemperature * 0.002941f + 36.53f) + 0.5f; // 0.5 to average for int
 }
 
 
@@ -123,7 +123,7 @@ SimpleMPU6050::vector3Float SimpleMPU6050::getNormalizedRotation()
 }
 
 
-int16_t SimpleMPU6050::getTemperature()
+float SimpleMPU6050::getTemperature()
 {
 	return temperature;
 }
